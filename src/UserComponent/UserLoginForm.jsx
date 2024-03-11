@@ -107,7 +107,7 @@ const UserLoginForm = () => {
   const handleForgotPassword = () => {
     const email = prompt("Please enter your email address:");
     if (email) {
-      fetch("http://localhost:8080/api/user/forgot-password", {
+      fetch("http://137.184.224.241:8080/api/user/forgot-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
