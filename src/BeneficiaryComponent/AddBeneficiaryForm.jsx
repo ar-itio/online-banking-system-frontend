@@ -13,6 +13,7 @@ const AddBeneficiaryForm = () => {
   const handleUserInput = (e) => {
     setaddBeneficiaryRequest({
       ...addBeneficiaryRequest,
+      // LLLL
       [e.target.name]: e.target.value,
     });
   };
