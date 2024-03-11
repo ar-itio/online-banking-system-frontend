@@ -13,7 +13,7 @@ const UserLoginForm = () => {
   };
 
   const loginAction = (e) => {
-    fetch("http://localhost:8080/api/user/login", {
+    fetch("http://137.184.224.241:8080/api/user/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
