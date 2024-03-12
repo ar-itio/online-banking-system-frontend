@@ -17,7 +17,7 @@ const AccountTransfer = () => {
   const accountTransfer = (e) => {
     addMoneyRequest.userId = customer.id;
 
-    fetch("http://localhost:8080/api/transaction/accountTransfer", {
+    fetch("http://localhost:8080/api/transaction/accountTransfer123", {
       method: "POST",
       headers: {
         Accept: "application/json",
