@@ -17,7 +17,7 @@ const ViewPendingTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      `${API_BASE_URL}/api/api/transaction/fetch/transactions/pending`,
+      `${API_BASE_URL}/api/transaction/fetch/transactions/pending`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -56,7 +56,7 @@ const ViewPendingTransactions = () => {
     updateUserStatusRequest.userId = transactionId;
     updateUserStatusRequest.status = "Approve";
 
-    fetch(`${API_BASE_URL}/api/api/transaction/update/status`, {
+    fetch(`${API_BASE_URL}/api/transaction/update/status`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -124,7 +124,7 @@ const ViewPendingTransactions = () => {
     updateUserStatusRequest.userId = transactionId;
     updateUserStatusRequest.status = "Reject";
 
-    fetch(`${API_BASE_URL}/api/api/transaction/update/status`, {
+    fetch(`${API_BASE_URL}/api/transaction/update/status`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
