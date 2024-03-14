@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const CustomerAccountFundTransfer = () => {
   const customer = JSON.parse(sessionStorage.getItem("active-customer"));
 
@@ -24,7 +24,7 @@ const CustomerAccountFundTransfer = () => {
   };
 
   const saveAccount = (e) => {
-    fetch("http://localhost:8080/api/bank/transaction/account/transfer", {
+    fetch(`${API_BASE_URL}/api/bank/transaction/account/transfer`, {
       method: "POST",
       headers: {
         Accept: "application/json",

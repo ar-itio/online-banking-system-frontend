@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const AddBankAccount = () => {
   const location = useLocation();
   const customer = location.state;
@@ -27,7 +27,7 @@ const AddBankAccount = () => {
   };
 
   const saveAccount = (e) => {
-    fetch("http://localhost:8080/api/bank/account/add", {
+    fetch(`${API_BASE_URL}/api/bank/account/add`, {
       method: "POST",
       headers: {
         Accept: "application/json",

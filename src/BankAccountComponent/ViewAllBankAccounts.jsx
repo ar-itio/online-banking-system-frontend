@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewAllBankAccounts = () => {
   let navigate = useNavigate();
   const [allAccounts, setAccounts] = useState([]);
@@ -22,7 +22,7 @@ const ViewAllBankAccounts = () => {
 
   const retrieveAllAccounts = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/bank/account/fetch/all",
+      `${API_BASE_URL}/api/bank/account/fetch/all`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -35,7 +35,7 @@ const ViewAllBankAccounts = () => {
 
   const retrieveAllAccountsByBankAccount = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/bank/account/search/all?accountNumber=" +
+      `${API_BASE_URL}/api/bank/account/search/all?accountNumber=` +
         accountNumber,
       {
         headers: {
@@ -85,7 +85,7 @@ const ViewAllBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Open";
 
-    fetch("http://localhost:8080/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -152,7 +152,7 @@ const ViewAllBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Lock";
 
-    fetch("http://localhost:8080/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -40,7 +40,7 @@ const ViewBeneficiaryAccounts = () => {
 
   const deleteAccount = (beneficiaryId) => {
     fetch(
-      "http://localhost:8080/api/beneficiary/delete?beneficiaryId=" +
+      `${API_BASE_URL}/api/beneficiary/delete?beneficiaryId=` +
         beneficiaryId,
       {
         method: "DELETE",

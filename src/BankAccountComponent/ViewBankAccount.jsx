@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewBankAccount = () => {
   const location = useLocation();
   const customer = location.state;
@@ -44,7 +44,7 @@ const ViewBankAccount = () => {
 
   const retrieveBankAccount = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/bank/account/fetch/user?userId=" + customer.id,
+      `${API_BASE_URL}/api/bank/account/fetch/user?userId=` + customer.id,
       {
         headers: {
           Authorization: "Bearer " + jwtToken, // Replace with your actual JWT token
@@ -82,7 +82,7 @@ const ViewBankAccount = () => {
     e.preventDefault();
 
     fetch(
-      "http://localhost:8080/api/bank/transaction/statement/download?accountId=" +
+      `${API_BASE_URL}/api/bank/transaction/statement/download?accountId=` +
         bankAccount.id +
         "&startTime=" +
         convertToEpochTime(statementDownloadRequest.startDate) +
@@ -121,7 +121,7 @@ const ViewBankAccount = () => {
   const depositAmount = (e) => {
     console.log("Amount :" + amountToDeposit);
 
-    fetch("http://localhost:8080/api/bank/transaction/deposit", {
+    fetch(`${API_BASE_URL}/api/bank/transaction/deposit`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -191,7 +191,7 @@ const ViewBankAccount = () => {
 
   const withdrawAmount = (e) => {
     console.log("Amount to withdraw :" + amountToWithdraw);
-    fetch("http://localhost:8080/api/bank/transaction/withdraw", {
+    fetch(`${API_BASE_URL}/api/bank/transaction/withdraw`, {
       method: "POST",
       headers: {
         Accept: "application/json",

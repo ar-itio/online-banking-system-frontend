@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewBankAccounts = () => {
   let navigate = useNavigate();
   const [allAccounts, setAccounts] = useState([]);
@@ -23,7 +23,7 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccounts = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/bank/account/fetch/bankwise?bankId=" +
+      `${API_BASE_URL}/api/bank/account/fetch/bankwise?bankId=` +
         bank.bank.id,
       {
         headers: {
@@ -37,7 +37,7 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccountsByBankAccount = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/bank/account/search?bankId=" +
+      `${API_BASE_URL}/api/bank/account/search?bankId=` +
         bank.bank.id +
         "&accountNumber=" +
         accountNumber,
@@ -89,7 +89,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Open";
 
-    fetch("http://localhost:8080/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -157,7 +157,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Lock";
 
-    fetch("http://localhost:8080/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
