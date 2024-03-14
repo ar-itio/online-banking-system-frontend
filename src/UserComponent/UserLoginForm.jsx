@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 
 const UserLoginForm = () => {
+  console.log("THIS IS MY API_BASE_URL",API_BASE_URL)
   let navigate = useNavigate();
 
   const [loginRequest, setLoginRequest] = useState({});
@@ -13,7 +16,8 @@ const UserLoginForm = () => {
   };
 
   const loginAction = (e) => {
-    fetch("http://137.184.224.241:8080/api/user/login", {
+    //xhr
+    fetch(`${API_BASE_URL}/api/user/login`, { //This is how to do it
       method: "POST",
       headers: {
         Accept: "application/json",
