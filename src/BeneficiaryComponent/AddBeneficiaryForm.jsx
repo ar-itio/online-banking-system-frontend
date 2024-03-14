@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const AddBeneficiaryForm = () => {
   let navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const AddBeneficiaryForm = () => {
         progress: undefined,
       });
     } else {
-      fetch("http://localhost:8080/api/beneficiary/add", {
+      fetch(`${API_BASE_URL}/api/api/beneficiary/add`, {
         method: "POST",
         headers: {
           Accept: "application/json",

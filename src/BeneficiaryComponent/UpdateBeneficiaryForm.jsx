@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useLocation } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const UpdateBeneficiaryForm = () => {
   let navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const UpdateBeneficiaryForm = () => {
         progress: undefined,
       });
     } else {
-      fetch("http://localhost:8080/api/beneficiary/update", {
+      fetch(`${API_BASE_URL}/api/api/beneficiary/update`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

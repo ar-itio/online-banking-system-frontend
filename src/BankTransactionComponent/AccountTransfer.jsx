@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const AccountTransfer = () => {
   let navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const AccountTransfer = () => {
   const accountTransfer = (e) => {
     addMoneyRequest.userId = customer.id;
 
-    fetch("http://localhost:8080/api/transaction/accountTransfer123", {
+    fetch(`${API_BASE_URL}/api/transaction/accountTransfer`, {
       method: "POST",
       headers: {
         Accept: "application/json",

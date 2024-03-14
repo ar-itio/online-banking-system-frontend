@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const UserProfileUpdate = () => {
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const UserProfileUpdate = () => {
     if (user.gender === "" || user.gender === "0") {
       alert("Please select Gender");
     } else {
-      fetch("http://localhost:8080/api/user/update/profile", {
+      fetch(`${API_BASE_URL}/api/user/update/profile`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

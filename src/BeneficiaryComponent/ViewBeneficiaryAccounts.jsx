@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewBeneficiaryAccounts = () => {
   let navigate = useNavigate();
   const [allBeneficiary, setAllBeneficiary] = useState([]);
@@ -12,7 +12,7 @@ const ViewBeneficiaryAccounts = () => {
   const customer = JSON.parse(sessionStorage.getItem("active-customer"));
   const retrieveAllBeneficiary = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/beneficiary/fetch?userId=" + customer.id,
+      `${API_BASE_URL}/api/api/beneficiary/fetch?userId=` + customer.id,
       {
         headers: {
           Authorization: "Bearer " + customer_jwtToken, // Replace with your actual JWT token

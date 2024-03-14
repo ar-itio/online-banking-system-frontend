@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewBankManagers = () => {
   let navigate = useNavigate();
   const [allManagers, setAllManagers] = useState([]);
@@ -12,7 +12,7 @@ const ViewBankManagers = () => {
 
   const retrieveAllManagers = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/user/fetch/role?role=BANK",
+      `${API_BASE_URL}/api/user/fetch/role?role=BANK`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const UserRegister = () => {
   const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ const UserRegister = () => {
     if (user.gender === "" || user.gender === "0") {
       alert("Please select Gender");
     } else {
-      fetch("http://localhost:8080/api/user/register", {
+      fetch(`${API_BASE_URL}/api/user/register`, {
         method: "POST",
         headers: {
           Accept: "application/json",

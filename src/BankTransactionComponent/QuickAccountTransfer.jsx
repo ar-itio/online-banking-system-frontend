@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const QuickAccountTransfer = () => {
   let navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const QuickAccountTransfer = () => {
   const retrieveAllBeneficiaries = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/beneficiary/fetch?userId=" + customer.id,
+        `${API_BASE_URL}/api/beneficiary/fetch?userId=` + customer.id,
         {
           headers: {
             Authorization: "Bearer " + customer_jwtToken, // Replace with your actual JWT token
@@ -50,7 +50,7 @@ const QuickAccountTransfer = () => {
   const accountTransfer = (e) => {
     addMoneyRequest.userId = customer.id;
 
-    fetch("http://localhost:8080/api/transaction/quick/accountTransfer", {
+    fetch(`${API_BASE_URL}/api/transaction/quick/accountTransfer`, {
       method: "POST",
       headers: {
         Accept: "application/json",

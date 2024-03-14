@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewBankCustomers = () => {
   let navigate = useNavigate();
   const [allCustomer, setAllCustomer] = useState([]);
@@ -22,7 +22,7 @@ const ViewBankCustomers = () => {
 
   const retrieveAllCustomers = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/user/bank/customers?bankId=" + bank.bank.id,
+      `${API_BASE_URL}/api/user/bank/customers?bankId=` + bank.bank.id,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token
@@ -35,7 +35,7 @@ const ViewBankCustomers = () => {
 
   const retrieveBankAllCustomerByName = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/user/bank/customer/search?bankId=" +
+      `${API_BASE_URL}/api/user/bank/customer/search?bankId=` +
         bank.bank.id +
         "&customerName=" +
         customerName,
@@ -87,7 +87,7 @@ const ViewBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Active";
 
-    fetch("http://localhost:8080/api/user/update/status", {
+    fetch(`${API_BASE_URL}/api/user/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -155,7 +155,7 @@ const ViewBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Deactivated";
 
-    fetch("http://localhost:8080/api/user/update/status", {
+    fetch(`${API_BASE_URL}/api/user/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",

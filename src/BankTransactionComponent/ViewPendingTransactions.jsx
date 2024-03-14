@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewPendingTransactions = () => {
   let navigate = useNavigate();
   const [allTransactions, setAllTransactions] = useState([]);
@@ -17,7 +17,7 @@ const ViewPendingTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/transaction/fetch/transactions/pending",
+      `${API_BASE_URL}/api/api/transaction/fetch/transactions/pending`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -56,7 +56,7 @@ const ViewPendingTransactions = () => {
     updateUserStatusRequest.userId = transactionId;
     updateUserStatusRequest.status = "Approve";
 
-    fetch("http://localhost:8080/api/transaction/update/status", {
+    fetch(`${API_BASE_URL}/api/api/transaction/update/status`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -124,7 +124,7 @@ const ViewPendingTransactions = () => {
     updateUserStatusRequest.userId = transactionId;
     updateUserStatusRequest.status = "Reject";
 
-    fetch("http://localhost:8080/api/transaction/update/status", {
+    fetch(`${API_BASE_URL}/api/api/transaction/update/status`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

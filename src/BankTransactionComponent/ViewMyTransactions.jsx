@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewMyTransactions = () => {
   let navigate = useNavigate();
   const conponentPDF = useRef();
@@ -21,7 +21,7 @@ const ViewMyTransactions = () => {
     // search transactions by ref id
     if (transactionRefId !== "") {
       const response = await axios.get(
-        "http://localhost:8080/api/transaction/search/customer/transactions/ref-id?customerId=" +
+        `${API_BASE_URL}/api/transaction/search/customer/transactions/ref-id?customerId=` +
           customer.id +
           "&transactionRefId=" +
           transactionRefId,
@@ -35,7 +35,7 @@ const ViewMyTransactions = () => {
       return response.data;
     } else {
       const response = await axios.get(
-        "http://localhost:8080/api/transaction/fetch/customer/transactions/all?customerId=" +
+        `${API_BASE_URL}/api/transaction/fetch/customer/transactions/all?customerId=` +
           customer.id,
         {
           headers: {

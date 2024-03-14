@@ -2,7 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const UserProfile = () => {
   let navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const UserProfile = () => {
   const retrieveAllBankUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/user/fetch/id?id=" + user.id
+        `${API_BASE_URL}/api/user/fetch/id?id=` + user.id
       );
       return response.data;
     } catch (error) {

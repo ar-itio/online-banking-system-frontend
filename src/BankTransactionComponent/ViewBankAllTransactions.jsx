@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewBankAllTransactions = () => {
   let navigate = useNavigate();
   const [allTransactions, setAllTransactions] = useState([]);
@@ -12,7 +12,7 @@ const ViewBankAllTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/bank/transaction/all/customer/fetch?bankId=" +
+      `${API_BASE_URL}/api/bank/transaction/all/customer/fetch?bankId=` +
         bank.bank.id,
       {
         headers: {

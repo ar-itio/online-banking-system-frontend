@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ViewAllPendingCustomers = () => {
   let navigate = useNavigate();
   const [allCustomer, setAllCustomer] = useState([]);
@@ -21,7 +21,7 @@ const ViewAllPendingCustomers = () => {
 
   const retrieveAllCustomers = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/user/fetch/customer/pending/request",
+      `${API_BASE_URL}/api/user/fetch/customer/pending/request`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -47,7 +47,7 @@ const ViewAllPendingCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Active";
 
-    fetch("http://localhost:8080/api/user/update/status", {
+    fetch(`${API_BASE_URL}/api/user/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -115,7 +115,7 @@ const ViewAllPendingCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Reject";
 
-    fetch("http://localhost:8080/api/user/update/status", {
+    fetch(`${API_BASE_URL}/api/user/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
