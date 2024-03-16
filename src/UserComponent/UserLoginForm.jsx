@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"; // Change the import to NavLink
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const UserLoginForm = () => {
   let navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const UserLoginForm = () => {
   };
 
   const loginAction = (e) => {
-    fetch("http://localhost:8080/api/user/login", {
+    fetch(`${API_BASE_URL}/api/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
