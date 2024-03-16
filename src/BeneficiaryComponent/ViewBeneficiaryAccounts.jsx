@@ -12,7 +12,7 @@ const ViewBeneficiaryAccounts = () => {
   const customer = JSON.parse(sessionStorage.getItem("active-customer"));
   const retrieveAllBeneficiary = async () => {
     const response = await axios.get(
-      `${API_BASE_URL}/api/api/beneficiary/fetch?userId=` + customer.id,
+      `${API_BASE_URL}/api/beneficiary/fetch?userId=` + customer.id,
       {
         headers: {
           Authorization: "Bearer " + customer_jwtToken, // Replace with your actual JWT token
