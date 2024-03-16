@@ -32,7 +32,7 @@ const AddBeneficiaryForm = () => {
         progress: undefined,
       });
     } else {
-      fetch(`${API_BASE_URL}/api/api/beneficiary/add`, {
+      fetch(`${API_BASE_URL}/api/beneficiary/add`, {
         method: "POST",
         headers: {
           Accept: "application/json",
