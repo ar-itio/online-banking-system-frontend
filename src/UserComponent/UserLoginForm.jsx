@@ -1,12 +1,10 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom"; // Change the import to NavLink
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom"; 
-
-const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
+import { useNavigate } from "react-router-dom";
 
 const UserLoginForm = () => {
-  console.log("THIS IS MY API_BASE_URL",API_BASE_URL)
   let navigate = useNavigate();
 
   const [loginRequest, setLoginRequest] = useState({});
@@ -16,8 +14,7 @@ const UserLoginForm = () => {
   };
 
   const loginAction = (e) => {
-    //xhr
-    fetch(`${API_BASE_URL}/api/user/login`, { //This is how to do it
+    fetch("http://localhost:8080/api/user/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -108,40 +105,6 @@ const UserLoginForm = () => {
     e.preventDefault();
   };
 
-  const handleForgotPassword = () => {
-    const email = prompt("Please enter your email address:");
-    if (email) {
-      fetch("http://137.184.224.241:8080/api/user/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: email }),
-      })
-      .then(response => {
-        if (response.ok) {
-          toast.success("If an account with that email exists, we have sent you a password reset email.", {
-            position: "top-center",
-            autoClose: 5000,
-          });
-        } else {
-          toast.error("There was a problem with your request.", {
-            position: "top-center",
-            autoClose: 5000,
-          });
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        toast.error("An error occurred. Please try again later.", {
-          position: "top-center",
-          autoClose: 5000,
-        });
-      });
-    }
-  };
-
-
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
@@ -204,11 +167,10 @@ const UserLoginForm = () => {
               >
                 Login
               </button>
-              <div className="mb-3 text-color">
-  <button type="button" className="btn btn-link p-0" onClick={handleForgotPassword}>Forgot Password?</button>
-</div>
+              <NavLink to="/user/forget/password" className="nav-link">
+                <b className="text-color">Forgot Password?</b>
+              </NavLink>
               <ToastContainer />
-              
             </form>
           </div>
         </div>

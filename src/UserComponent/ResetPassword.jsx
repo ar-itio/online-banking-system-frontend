@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,33 @@ const ResetPassword = () => {
   };
 
   const resetPassword = (e) => {
+    if (registerRequest.password !== registerRequest.confirmPassword) {
+      toast.error("Passwords do not match", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      e.preventDefault();
+      return;
+    }
+    if (!registerRequest.password || !registerRequest.confirmPassword) {
+      toast.error("Please enter both passwords", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      e.preventDefault();
+      return;
+    }
+
     registerRequest.userId = customerId;
 
     fetch("http://localhost:8080/api/user/reset-password", {
@@ -47,7 +74,7 @@ const ResetPassword = () => {
               window.location.href = "/user/login";
             }, 1000); // Redirect after 3 seconds
           } else {
-            console.log("Didn't got success response");
+            console.log("Didn't get success response");
             toast.error(res.responseMessage, {
               position: "top-center",
               autoClose: 1000,
@@ -62,7 +89,7 @@ const ResetPassword = () => {
       })
       .catch((error) => {
         console.error(error);
-        toast.error("It seems server is down", {
+        toast.error("It seems the server is down", {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: false,
@@ -88,7 +115,7 @@ const ResetPassword = () => {
           <div className="card-body">
             <form>
               <div className="mb-3 text-color">
-                <label for="password" class="form-label">
+                <label htmlFor="password" className="form-label">
                   <b>Password</b>
                 </label>
                 <input
@@ -97,7 +124,20 @@ const ResetPassword = () => {
                   id="password"
                   name="password"
                   onChange={handleUserInput}
-                  value={registerRequest.password}
+                  value={registerRequest.password || ""}
+                />
+              </div>
+              <div className="mb-3 text-color">
+                <label htmlFor="confirmPassword" className="form-label">
+                  <b>Confirm Password</b>
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  onChange={handleUserInput}
+                  value={registerRequest.confirmPassword || ""}
                 />
               </div>
 
