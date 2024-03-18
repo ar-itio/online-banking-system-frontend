@@ -31,7 +31,8 @@ import AddBeneficiaryForm from "./BeneficiaryComponent/AddBeneficiaryForm";
 import ViewBeneficiaryAccounts from "./BeneficiaryComponent/ViewBeneficiaryAccounts";
 import UpdateBeneficiaryForm from "./BeneficiaryComponent/UpdateBeneficiaryForm";
 import QuickAccountTransfer from "./BankTransactionComponent/QuickAccountTransfer";
-
+import ForgetPassword from "./UserComponent/ForgetPassword";
+import ResetPassword from "./UserComponent/ResetPassword";
 function App() {
   return (
     <div>
@@ -122,6 +123,8 @@ function App() {
           path="/customer/quick/account/transfer"
           element={<QuickAccountTransfer />}
         />
+        <Route path="/user/forget/password" element={<ForgetPassword />} />
+        <Route path="/:customerId/reset-password" element={<ResetPassword />} />
       </Routes>
     </div>
   );
