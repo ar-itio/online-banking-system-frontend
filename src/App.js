@@ -30,13 +30,11 @@ import UserProfileUpdate from "./UserComponent/UserProfileUpdate";
 import AddBeneficiaryForm from "./BeneficiaryComponent/AddBeneficiaryForm";
 import ViewBeneficiaryAccounts from "./BeneficiaryComponent/ViewBeneficiaryAccounts";
 import UpdateBeneficiaryForm from "./BeneficiaryComponent/UpdateBeneficiaryForm";
-//import QuickAccountTransfer from "./BankTransactionComponent/QuickAccountTransfer";
-import QuickPay from "./BankTransactionComponent/QuickPay";
-import AddFeeDetail from "./FeeDetailComponent/AddFeeDetail";
-import ViewFeeDetail from "./FeeDetailComponent/ViewFeeDetail";
+import QuickAccountTransfer from "./BankTransactionComponent/QuickAccountTransfer";
 import ForgetPassword from "./UserComponent/ForgetPassword";
 import ResetPassword from "./UserComponent/ResetPassword";
-
+import AddFeeDetail from "./FeeDetailComponent/AddFeeDetail";
+import ViewFeeDetail from "./FeeDetailComponent/ViewFeeDetail";
 function App() {
   return (
     <div>
@@ -123,8 +121,11 @@ function App() {
           path="/customer/beneficiary/account/update"
           element={<UpdateBeneficiaryForm />}
         />
-       
-        <Route path="/customer/beneficiary/quick/pay" element={<QuickPay />} />
+        <Route
+          path="/customer/quick/account/transfer"
+          element={<QuickAccountTransfer />}
+        />
+        
         <Route path="/admin/fee/detail/add" element={<AddFeeDetail />} />
         <Route path="/admin/fee/detail/view" element={<ViewFeeDetail />} />
         <Route path="/user/forget/password" element={<ForgetPassword />} />
