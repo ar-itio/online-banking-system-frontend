@@ -19,7 +19,7 @@ const ForgetPassword = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(registerRequest),
+      body: JSON.stringify(registerRequest), 
     })
       .then((result) => {
         console.log("result", result);

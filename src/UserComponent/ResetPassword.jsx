@@ -134,7 +134,7 @@ const ResetPassword = () => {
                 <input
                   type="password"
                   className="form-control"
-                  id="confirmPassword"
+                  id="confirmPassword" 
                   name="confirmPassword"
                   onChange={handleUserInput}
                   value={registerRequest.confirmPassword || ""}
