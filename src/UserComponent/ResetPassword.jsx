@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ResetPassword = () => {
   let navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const ResetPassword = () => {
 
     registerRequest.userId = customerId;
 
-    fetch("http://localhost:8080/api/user/reset-password", {
+    fetch(`${API_BASE_URL}/api/user/reset-password`, {
       method: "POST",
       headers: {
         Accept: "application/json",
