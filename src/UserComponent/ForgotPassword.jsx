@@ -56,7 +56,7 @@ const ForgetPassword = () => {
         });
       })
       .catch((error) => {
-        console.error(error);
+        console.error("error",error);
         toast.error("It seems server is down", {
           position: "top-center",
           autoClose: 1000,
