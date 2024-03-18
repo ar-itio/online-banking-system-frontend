@@ -23,37 +23,40 @@ const ForgetPassword = () => {
     })
       .then((result) => {
         console.log("result", result);
-        result.json().then((res) => {
-          console.log(res);
-
-          if (res.success) {
-            console.log("Got the success response");
-
-            toast.success(res.responseMessage, {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            setTimeout(() => {
-              window.location.href = "/user/login";
-            }, 1000); // Redirect after 3 seconds
-          } else {
-            console.log("Didn't got success response");
-            toast.error(res.responseMessage, {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }
-        });
+        if(result.ok) {
+          result.json().then((res) => {
+            console.log(res);
+  
+            if (res.success) {
+              console.log("Got the success response");
+  
+              toast.success(res.responseMessage, {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+              setTimeout(() => {
+                window.location.href = "/user/login";
+              }, 1000); // Redirect after 3 seconds
+            } else {
+              console.log("Didn't got success response");
+              toast.error(res.responseMessage, {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }
+          });
+        }
+    
       })
       .catch((error) => {
         console.error("error",error);
