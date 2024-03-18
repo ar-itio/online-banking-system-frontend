@@ -67,6 +67,25 @@ const AdminHeader = () => {
 */}
       <li className="nav-item">
         <Link
+          to="/admin/fee/detail/add"
+          className="nav-link active"
+          aria-current="page"
+        >
+          <b className="text-color">Add Fee</b>
+        </Link>
+      </li>
+
+      <li className="nav-item">
+        <Link
+          to="/admin/fee/detail/view"
+          className="nav-link active"
+          aria-current="page"
+        >
+          <b className="text-color">View Fee</b>
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
           to="/admin/customer/pending"
           className="nav-link active"
           aria-current="page"
@@ -74,7 +93,6 @@ const AdminHeader = () => {
           <b className="text-color">Pending Customers</b>
         </Link>
       </li>
-
       <li className="nav-item">
         <Link
           to="/admin/all/bank/customers"
@@ -84,7 +102,6 @@ const AdminHeader = () => {
           <b className="text-color">All Customers</b>
         </Link>
       </li>
-
       <li className="nav-item">
         <Link
           to="/admin/customer/transaction/pending"
@@ -94,7 +111,6 @@ const AdminHeader = () => {
           <b className="text-color">Pending Transactions</b>
         </Link>
       </li>
-
       <li className="nav-item">
         <Link
           to="/admin/customer/transaction/success"
@@ -104,7 +120,6 @@ const AdminHeader = () => {
           <b className="text-color">Success Transactions</b>
         </Link>
       </li>
-
       <li class="nav-item">
         <Link
           to=""
