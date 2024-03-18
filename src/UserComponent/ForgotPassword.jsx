@@ -13,7 +13,7 @@ const ForgetPassword = () => {
   };
 
   const sendEmail = (e) => {
-    fetch(`${API_BASE_URL}/api/api/user/send/reset-password/mail`, {
+    fetch(`${API_BASE_URL}/api/user/send/reset-password/mail`, {
       method: "POST",
       headers: {
         Accept: "application/json",
