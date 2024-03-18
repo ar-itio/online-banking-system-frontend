@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
-const ResetPassword = () => {
+const ForgetPassword = () => {
   let navigate = useNavigate();
-
-  const { customerId } = useParams();
 
   const [registerRequest, setRegisterRequest] = useState({});
 
@@ -15,37 +12,8 @@ const ResetPassword = () => {
     setRegisterRequest({ ...registerRequest, [e.target.name]: e.target.value });
   };
 
-  const resetPassword = (e) => {
-    if (registerRequest.password !== registerRequest.confirmPassword) {
-      toast.error("Passwords do not match", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      e.preventDefault();
-      return;
-    }
-    if (!registerRequest.password || !registerRequest.confirmPassword) {
-      toast.error("Please enter both passwords", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      e.preventDefault();
-      return;
-    }
-
-    registerRequest.userId = customerId;
-
-    fetch(`${API_BASE_URL}/api/user/reset-password`, {
+  const sendEmail = (e) => {
+    fetch(`${API_BASE_URL}/api/user/send/reset-password/mail`,  {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -74,7 +42,7 @@ const ResetPassword = () => {
               window.location.href = "/user/login";
             }, 1000); // Redirect after 3 seconds
           } else {
-            console.log("Didn't get success response");
+            console.log("Didn't got success response");
             toast.error(res.responseMessage, {
               position: "top-center",
               autoClose: 1000,
@@ -89,7 +57,7 @@ const ResetPassword = () => {
       })
       .catch((error) => {
         console.error(error);
-        toast.error("It seems the server is down", {
+        toast.error("It seems server is down", {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: false,
@@ -110,43 +78,30 @@ const ResetPassword = () => {
           style={{ width: "25rem" }}
         >
           <div className="card-header bg-color text-center custom-bg-text">
-            <h4 className="card-title">Reset Password</h4>
+            <h4 className="card-title">Forget Password</h4>
           </div>
           <div className="card-body">
             <form>
               <div className="mb-3 text-color">
-                <label htmlFor="password" className="form-label">
-                  <b>Password</b>
+                <label for="emailId" class="form-label">
+                  <b>Email Id</b>
                 </label>
                 <input
-                  type="password"
+                  type="email"
                   className="form-control"
-                  id="password"
-                  name="password"
+                  id="emailId"
+                  name="emailId"
                   onChange={handleUserInput}
-                  value={registerRequest.password || ""}
-                />
-              </div>
-              <div className="mb-3 text-color">
-                <label htmlFor="confirmPassword" className="form-label">
-                  <b>Confirm Password</b>
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirmPassword" 
-                  name="confirmPassword"
-                  onChange={handleUserInput}
-                  value={registerRequest.confirmPassword || ""}
+                  value={registerRequest.emailId}
                 />
               </div>
 
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
-                onClick={resetPassword}
+                onClick={sendEmail}
               >
-                Reset Password
+                Send Email
               </button>
               <ToastContainer />
             </form>
@@ -157,4 +112,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgetPassword;
