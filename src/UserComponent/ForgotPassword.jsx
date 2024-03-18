@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const ForgetPassword = () => {
   let navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const ForgetPassword = () => {
   };
 
   const sendEmail = (e) => {
-    fetch("http://localhost:8080/api/user/send/reset-password/mail", {
+    fetch(`${API_BASE_URL}/api/api/user/send/reset-password/mail`, {
       method: "POST",
       headers: {
         Accept: "application/json",
