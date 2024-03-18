@@ -31,7 +31,7 @@ import AddBeneficiaryForm from "./BeneficiaryComponent/AddBeneficiaryForm";
 import ViewBeneficiaryAccounts from "./BeneficiaryComponent/ViewBeneficiaryAccounts";
 import UpdateBeneficiaryForm from "./BeneficiaryComponent/UpdateBeneficiaryForm";
 import QuickAccountTransfer from "./BankTransactionComponent/QuickAccountTransfer";
-import ForgetPassword from "./UserComponent/ForgotPassword";
+import ForgetPassword from "./UserComponent/ForgetPassword";
 import ResetPassword from "./UserComponent/ResetPassword";
 function App() {
   return (
