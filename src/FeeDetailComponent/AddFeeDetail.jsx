@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-
+const API_BASE_URL  = process.env.REACT_APP_API_BASE_URL;
 const AddFeeDetail = () => {
   let navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const AddFeeDetail = () => {
 
   const retrieveAllFeeType = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/fee/detail/type",
+      `${API_BASE_URL}/api/fee/detail/type`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -61,7 +61,7 @@ const AddFeeDetail = () => {
         progress: undefined,
       });
     } else {
-      fetch("http://localhost:8080/api/fee/detail/add", {
+      fetch(`${API_BASE_URL}/api/fee/detail/add`, {
         method: "POST",
         headers: {
           Accept: "application/json",
